@@ -19,6 +19,8 @@ var sound_1 = null
 var sound_2 = null
 var sound_3 = null
 
+var Coin = preload("res://Coin/Coin.tscn")
+
 func _ready():
 	$Select.texture = $Sprite.texture
 	$Select.scale = $Sprite.scale
@@ -56,3 +58,9 @@ func die():
 		sound_3 = get_node_or_null("/root/Game/3")
 	if sound_3 != null:
 		sound_3.play()
+	if Effects == null:
+		Effects = get_node_or_null("/root/Game/Effects")
+	if Effects != null:
+		var coin = Coin.instance()
+		coin.position = target_position
+		Effects.add_child(coin)
